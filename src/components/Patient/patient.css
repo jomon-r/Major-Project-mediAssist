@@ -1,0 +1,18 @@
+.patient1{
+    text-align: center;
+    background-image: url(https://img.freepik.com/free-vector/medical-healthcare-blue-color_1017-26807.jpg);
+    height: 100vh;
+   color: red;
+}
+.patientvisual{
+    padding-top: 100px;
+    padding-left: 0px;
+}
+.pheading{
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+}
+#pspan
+  {
+    color: rgb(0, 0, 0);
+  }

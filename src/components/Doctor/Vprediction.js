@@ -1,0 +1,239 @@
+import './Vprediction.css'
+import React, { useState } from "react"
+import * as tf from '@tensorflow/tfjs';
+import { useNavigate } from "react-router-dom";
+const Vprediction = () => {
+
+    const [username, setUser] = useState({ pno: "", parameter1: "", pval1: "" });
+    const [age, setAge] = useState(null);
+    const form = {
+        id: "",
+        BloodSugar: "",
+        Creatinine: "",
+        HBA1C: "",
+        Sodium: "",
+        HDL: "",
+        LDL: ""
+    }
+    const navigate = useNavigate();
+    const handleChange = (event) => {
+        // console.log("events", event);
+        const label = event.target.name;
+        const value = event.target.value;
+        setUser({ ...username, [label]: value });
+        console.log(username);
+    };
+    const fetchUserDetails = async () => {
+
+        try {
+            const response = await fetch(`http://localhost:5000/api/model/${username.pno}`);
+            const data = await response.json();
+            setAge(data[0].Age);
+            console.log(age)
+        } catch (error) {
+            console.error('Error fetching user details:', error);
+        }
+    };
+    const sendUserDetails = async () => {
+        if (form.BloodSugar != "" || form.Creatinine != "" || form.HBA1C != "" || form.HDL != "" || form.LDL != "" || form.Sodium != "") {
+            try {
+                const response = await fetch('http://localhost:5000/api/storemodel', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(form),
+                });
+                const data = await response.json();
+                console.log(data.message);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+
+            navigate(`/doctorvisualization/${form.id}`);
+        }
+    };
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+        fetchUserDetails();
+
+        if (username.parameter1 === 'sugar') {
+            // const model = await tf.loadLayersModel('./models/BloodSugar/model.json');
+            const model = await tf.loadLayersModel('../../models/BloodSugar/model.json');
+            const input = [parseFloat(age), parseFloat(username.pval1)];
+
+            const reshapedInput = tf.tensor(input, [1, 1, 2]);
+
+            const predictions = model.predict(reshapedInput);
+
+            predictions.array().then(result => {
+                console.log('Predictions:', result[0][0]);
+                form.HBA1C = result[0][0]
+                form.Sodium = result[0][1]
+                form.Creatinine = result[0][2]
+                form.HDL = result[0][3]
+                form.LDL = result[0][4]
+
+                form.BloodSugar = username.pval1
+            });
+
+        }
+        else if (username.parameter1 === 'creatinine') {
+            const model = await tf.loadLayersModel('../../models/Creatinine/model.json');
+
+            const input = [parseFloat(age), parseFloat(username.pval1)];
+
+            const reshapedInput = tf.tensor(input, [1, 1, 2]);
+
+            const predictions = model.predict(reshapedInput);
+
+            predictions.array().then(result => {
+                console.log('Predictions:', result[0][0]);
+                form.HBA1C = result[0][0]
+                form.Sodium = result[0][1]
+                form.HDL = result[0][2]
+                form.LDL = result[0][3]
+                form.BloodSugar = result[0][4]
+
+                form.Creatinine = username.pval1
+            });
+
+        }
+        else if (username.parameter1 === 'hba1c') {
+            const model = await tf.loadLayersModel('../../models/hba1c/model.json');
+
+            const input = [parseFloat(age), parseFloat(username.pval1)];
+
+            const reshapedInput = tf.tensor(input, [1, 1, 2]);
+
+            const predictions = model.predict(reshapedInput);
+
+            predictions.array().then(result => {
+                console.log('Predictions:', result[0][0]);
+                form.Sodium = result[0][0]
+                form.Creatinine = result[0][1]
+                form.HDL = result[0][2]
+                form.LDL = result[0][3]
+                form.BloodSugar = result[0][4]
+
+                form.HBA1C = username.pval1
+            });
+
+        }
+        else if (username.parameter1 === 'sodium') {
+            const model = await tf.loadLayersModel('../../models/sodium/model.json');
+
+            const input = [parseFloat(age), parseFloat(username.pval1)];
+
+            const reshapedInput = tf.tensor(input, [1, 1, 2]);
+
+            const predictions = model.predict(reshapedInput);
+
+            predictions.array().then(result => {
+                console.log('Predictions:', result[0][0]);
+                form.HBA1C = result[0][0]
+                form.Creatinine = result[0][1]
+                form.HDL = result[0][2]
+                form.LDL = result[0][3]
+                form.BloodSugar = result[0][4]
+
+                form.Sodium = username.pval1
+            });
+
+        }
+        else if (username.parameter1 === 'hdl') {
+            const model = await tf.loadLayersModel('../../models/HDL/model.json');
+
+            const input = [parseFloat(age), parseFloat(username.pval1)];
+
+            const reshapedInput = tf.tensor(input, [1, 1, 2]);
+
+            const predictions = model.predict(reshapedInput);
+
+            predictions.array().then(result => {
+                console.log('Predictions:', result[0][0]);
+                form.HBA1C = result[0][0]
+                form.Sodium = result[0][1]
+                form.Creatinine = result[0][2]
+                form.LDL = result[0][3]
+                form.BloodSugar = result[0][4]
+
+                form.HDL = username.pval1
+            });
+
+        }
+        else if (username.parameter1 === 'LDL') {
+            const model = await tf.loadLayersModel('../../models/LDL/model.json');
+
+            const input = [parseFloat(age), parseFloat(username.pval1)];
+
+            const reshapedInput = tf.tensor(input, [1, 1, 2]);
+
+            const predictions = model.predict(reshapedInput);
+
+            predictions.array().then(result => {
+                console.log('Predictions:', result[0][0]);
+                form.HBA1C = result[0][0]
+                form.Sodium = result[0][1]
+                form.Creatinine = result[0][2]
+                form.HDL = result[0][3]
+                form.BloodSugar = result[0][4]
+
+                form.LDL = username.pval1
+            });
+
+        };
+
+        form.id = username.pno
+        sendUserDetails();
+    };
+
+    return (
+        <>
+            <body className="vbody">
+                <div className="vheading">
+                    <h1><span id="vspan">medi</span>Assist</h1>
+                </div>
+                <div className="vpage">
+                    <div className="vprcover" >
+                        <div className='vsub'><h2>Predicion</h2></div>
+                        <form>
+
+                            <p>
+                                <label>Patient ID</label>
+                                <br />
+                                <input className="vinput" type="text" name="pno" onChange={handleChange} />
+                            </p>
+
+                            <p>
+                                <label for="parameter">Select Parameter</label>
+                                <select className='vinput' name='parameter1' id='parameter1' onClick={handleChange}>
+                                    <option value="sugar">Blood Sugar</option>
+                                    <option value="creatinine">Creatinine</option>
+                                    <option value="hba1c">HBA1C</option>
+                                    <option value="sodium">Sodium</option>
+                                    <option value="hdl">HDL</option>
+                                    <option value="ldl">LDL</option>
+                                </select>
+                            </p>
+                            <p>
+                                <label>Enter input value</label>
+                                <br />
+                                <input className="vinput" type="text" name="pval1" onChange={handleChange} />
+                            </p>
+
+                            <p>
+                                <button id="vbutton" type="submit" onClick={handleSubmit}>Predict</button>
+                            </p>
+                        </form>
+
+                    </div>
+                </div>
+            </body>
+        </>
+    )
+}
+
+export default Vprediction;
+

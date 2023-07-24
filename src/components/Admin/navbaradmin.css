@@ -1,0 +1,66 @@
+
+  .ghorizontal-navbar{
+    /* flex: 1; */
+    display: flex;
+    flex-direction: row;
+    margin-top: 70px;
+    background-color: white;
+    text-align: center;
+    width: 85%;
+    height: 55%;
+    justify-content: center;
+    position: relative;
+    border-radius: 1em;
+    box-shadow: 0 0.188em 1.550em rgb(0, 0, 0);
+    padding: 4%;
+    align-items: center;
+    margin-left: 120px;
+  }
+  .gbutton-navbar{
+      height:50px;
+      width: 120px;
+      color:rgb(24, 23, 23);
+      background-color: rgb(240, 41, 6);
+      margin-left: 560px;
+      margin-top: 10px;
+      
+      
+  }
+  .gnavbar-link1{
+    background-image: url("https://cdn1.vectorstock.com/i/1000x1000/35/80/hospital-room-cartoon-doctor-and-patient-vector-26873580.jpg");
+    background-size: 310px;
+    padding: 50px;
+    /* margin-left: 10px; */
+    color: black;
+    width: 300px;
+    height: 200px;
+  }
+  .gnavbar-link2{
+    background-image: url("https://media.istockphoto.com/id/1214423422/vector/medical-team.jpg?s=612x612&w=0&k=20&c=1KqS6SPMkA6wtga2_MqS59tlB8j8WmkYoB6-bucy60k=");
+    background-size: 310px;
+    padding: 50px;
+    margin-left: 30px;
+    color: black;
+    width: 300px;
+    height: 200px;
+  }
+  .gnavbar-link3{
+    background-image: url("https://universitycollegeblog.du.edu/wp-content/uploads/2020/10/health-informatics-feature.png");
+    background-size: 400px;
+    padding: 50px;
+    margin-left: 30px;
+    color: black;
+    width: 300px;
+    height: 200px;
+    
+
+    
+    
+  }
+  .abc1{
+    margin-top: 30px;
+    margin-left: 50px;
+    color: black;
+  }
+
+  

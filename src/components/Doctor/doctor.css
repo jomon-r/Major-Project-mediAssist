@@ -1,0 +1,21 @@
+.doctor1{
+    text-align: left;
+    background-image: url(https://img.freepik.com/free-vector/medical-healthcare-blue-color_1017-26807.jpg);
+    background-size: cover;
+    height: 100%;
+   color: rgb(0, 0, 0);
+   padding-bottom: 20px;
+}
+.doctorvisual{
+    margin-left: 70px;
+    padding-top: 60px;
+    padding-left: 0px;
+    
+}
+.visual{
+    margin-left: 665px;
+}
+.dheading{
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+}

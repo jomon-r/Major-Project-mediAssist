@@ -1,0 +1,92 @@
+
+.vheading{
+    text-align: center;
+  }
+  #vspan
+  {
+    color: rgb(255, 32, 32);
+  }
+  .vpage{
+    background-image: url(https://img.freepik.com/free-vector/medical-healthcare-blue-color_1017-26807.jpg);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    }
+  .vcover{
+    background-color: rgb(255, 255, 255);
+     margin-top: 90px;
+    text-align: center;
+    width: 40%;
+    height: 76%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    border-radius: 1em;
+    box-shadow: 0 0.188em 1.550em rgb(0, 0, 0);
+    padding: 8%;
+ } 
+ .vinput{
+  background-color: rgb(229, 226, 226);
+  width: 300px;
+  padding: 2%;
+  border-radius: 0.25em;
+  border: none;
+  text-align: center;
+ }
+ 
+
+ #vbutton{
+  background-color: rgb(255, 32, 32);
+  transition: 0.5s;
+  border-radius: 0.25em;
+  width: 250px;
+  cursor: pointer;
+  margin-top: 15px;
+  height: 30px;
+ }
+ #vbutton:hover { transform: scale(1.25);}
+
+ .vsub{
+  color: rgb(255, 32, 32) ;
+  margin-bottom: 10px;
+  /* margin-top: 10px; */
+ }
+
+ .vsub1{
+    color: rgb(255, 32, 32) ;
+    margin-bottom: 10px;
+    margin-top: 10px;
+   }
+
+.aprcover{
+  background-color: rgb(255, 255, 255);
+     margin-top: 60px;
+    text-align: center;
+    width: 40%;
+    height: 84%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    border-radius: 1em;
+    box-shadow: 0 0.188em 1.550em rgb(0, 0, 0);
+    padding: 8%;
+
+}
+.adpacover{
+  background-color: rgb(255, 255, 255);
+     margin-top: 100px;
+    text-align: center;
+    width: 40%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    border-radius: 1em;
+    box-shadow: 0 0.188em 1.550em rgb(0, 0, 0);
+    padding: 8%;
+}
